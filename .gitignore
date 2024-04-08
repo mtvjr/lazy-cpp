@@ -1,3 +1,6 @@
 # Build Artifacts
 build
 debug
+
+# IDE Artifacts
+.vscode
