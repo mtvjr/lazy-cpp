@@ -146,4 +146,13 @@ public:
     bool isEvaluated() const { return pimpl->isEvaluated(); }
 };
 
+template <typename T, typename Evaluator>
+auto make_shared_lazy(const Evaluator&& eval)
+{
+    return SharedLazy<T> {
+        std::dynamic_pointer_cast<detail::LazyConcept<T>>(
+            std::make_shared<detail::VariantLazy<T>>(std::forward<Evaluator>(eval)))
+    };
+}
+
 }

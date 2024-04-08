@@ -71,3 +71,10 @@ TEST(LazyWrapper, Constructor)
     ASSERT_EQ(*copy2, build_int());
     ASSERT_TRUE(copy2.isEvaluated());
 }
+
+TEST(make_shared_lazy, integer)
+{
+    SharedLazy<int> lazy = lazycpp::make_shared_lazy<int>(build_int);
+    ASSERT_FALSE(lazy.isEvaluated());
+    ASSERT_EQ(lazy.get_value(), build_int());
+}
